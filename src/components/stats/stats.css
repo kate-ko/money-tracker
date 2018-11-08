@@ -1,0 +1,65 @@
+.text {
+  margin: auto;
+  width: 700px;
+  padding-top: 5vh;
+  font-size: 20px;
+}
+
+.chart-box {
+  width: 600px;
+  height: 500px;
+  padding: 20px;
+  text-align: left;
+  display: inline-block;
+}
+
+.chart-box .select-month {
+  padding-left: 30px;
+  padding-bottom: 30px;
+}
+
+.select-month select, select:focus {
+  background-color: none;
+  -webkit-rtl-ordering: logical;
+  cursor: text;
+  padding: 1px;
+  border-style: none;
+  border-image: none;
+  outline: none;
+  border-bottom: 1px solid grey;
+  background: none;
+  font-family: Montserrat, cursive;
+  font-size: 14px;
+  min-height: 20px;
+  color: black;
+  width: 80px;
+}
+
+.select-month option {
+  padding: 5px 8px;
+  color: rgb(15, 14, 14);
+  background: rgb(224, 222, 222);
+  border-style: none;
+  border-image: none;
+  border: none;
+  outline: none;
+}
+
+.chart-box .chart-name {
+  font-size: 20px;
+  text-align: center;
+  padding-bottom: 10px;
+}
+
+.recharts-wrapper {
+  margin: auto;
+}
+
+.chart-box p, ul {
+  background: white ;
+}
+
+.recharts-legend-wrapper ul {
+  background: #1b1b1b;
+  color: white;
+}

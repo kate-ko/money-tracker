@@ -1,0 +1,46 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat');
+
+.App {
+  min-width:1000px;
+  height: 100vh;
+  text-align: center; 
+  /*background-image: radial-gradient(circle,#760A7A,#570363);
+  color:white;*/
+  position: relative;
+}
+
+body {
+  font-family: Montserrat, cursive;
+  font-size: 14px;
+  background: #ecf0f1;
+}
+
+#nav-bar ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #111111;
+}
+
+#nav-bar li {
+  float: left;
+}
+
+#nav-bar li a {
+  display: block;
+  color: #fff;
+  text-align: center;
+  padding: 16px;
+  text-decoration: none;
+}
+
+#nav-bar li a:hover {
+  background-color: #1d1c1c;
+}
+
+#nav-bar li a.selected {
+  background-color: #333333;
+}
+
+

@@ -1,0 +1,109 @@
+.form {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 360px;
+  height: 500px;
+  margin: auto;
+  background: black;
+  opacity: 0.9;
+  border-radius: 5px;
+  color: white;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.form > div {
+  min-height: 30px;
+}
+
+.close-button {
+  text-align: right;
+}
+
+.form-input {
+  display: grid;
+  grid-template-columns: 120px 160px;
+  color: white;
+  justify-content: center;
+  width: 100%;
+  text-align: left;
+  align-content: space-evenly;
+}
+
+.form-input > div {
+  height: 50px;
+}
+
+.one-column1 {
+  grid-column: 1 / span 2;
+ }
+ 
+.one-column1 > div {
+   display: inline-block;
+   width: 100px;
+}
+
+.form-input input {
+  color: white;
+  width: 140px;
+}
+
+.form-input select {
+  color: white;
+  width: 140px;
+}
+
+.form-input option {
+  color: white;
+  width: 140px;
+}
+
+input[type="radio"],input[type="radio"]:focus  {
+  width: 20px;
+  min-height: 10px;
+  font-size: 10px
+}
+
+.sel option {
+  padding: 5px 8px;
+  color: white;
+  background: rgb(59, 59, 59);
+  border-style: none;
+  border-image: none;
+  border: none;
+  outline: none;
+  width: 140px;
+}
+
+.sel select {
+  width: 140px;
+  color: white;
+}
+
+.sel select:focus {
+  width: 140px;
+  color: white;
+}
+
+.form button {
+  outline: none;
+  background: none;
+  border: none;
+  padding: 0px;
+  background:rgb(112, 14, 168);
+  width: 80px;
+  height: 45px;
+  border-radius: 3px;
+  opacity: 0.9;
+  box-shadow: 2px 2px rgba(0, 0, 0, 0.3);
+  font-family: Montserrat, cursive;
+  color: white;
+  font-size: 16px;
+}
+
+.red > input {
+  color: red;
+}
