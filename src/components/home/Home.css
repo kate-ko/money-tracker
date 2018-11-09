@@ -1,5 +1,4 @@
 .home {
-  /*background-image: url("../img/explosion-of-coins.jpg");*/
   background-image: radial-gradient(circle,rgb(183, 16, 189), #760A7A, #570363);
   width: 100%;
   height: calc((100% - 50px));
@@ -16,6 +15,7 @@
 .text ul {
   background: inherit;
   list-style-type: none;
+  padding-left: 0;
 }
 
 .text img {
