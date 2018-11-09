@@ -44,7 +44,7 @@ class App extends Component {
             <Route path="/records" exact render={() => <Records changeSelected={this.changeSelected} />} />
             <Route path="/home" exact render={() => <Home changeSelected={this.changeSelected} />} />} />
             <Route path="/stats" exact render={() => <Stats changeSelected={this.changeSelected} />} />} />
-            <Route path="/" render={() => <Home />} />
+            <Route path="/" render={() => <Home changeSelected={this.changeSelected} />} />
           </Switch>
         </div>
       </Router>

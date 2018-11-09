@@ -4,7 +4,7 @@ import coins from '../img/coins.png';
 
 class Home extends Component {
   componentDidMount() {
-    this.props.changeSelected("Home")
+    this.props.changeSelected("Home");
   }
 
   render() {
