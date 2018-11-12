@@ -45,7 +45,7 @@ class Records extends Component {
     AxiosFuncs.getDataFromDB().then(result => {
       let allRecords = result.data[0].record
       let total = allRecords.length
-      allRecords.sort((a, b) => (new Date(b.date) - new Date(a.date)));
+      //allRecords.sort((a, b) => (new Date(b.date) - new Date(a.date))); 
       this.setState({ allRecords, isLoading: false, total });
     }).catch(function (error) {
       console.log(error);

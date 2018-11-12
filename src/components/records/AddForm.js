@@ -36,22 +36,28 @@ class AddForm extends Component {
         let category = categoriesExpense[0].name
         this.setState({ categoriesExpense, categoriesIncome, date, category })
       })
-      .catch(err => {console.log(err); alert("Problem with DB")})
+      .catch(err => { console.log(err); alert("Problem with DB") })
   }
 
   addRecord = () => {
     if (this.state.amount <= 0) {
-      this.setState({isRed: "red"})
+      this.setState({ isRed: "red" })
       return;
     }
     let category = (this.state.type === "Expense") ?
-      this.state.categoriesExpense.filter(d => d.name === this.state.category) :
-      this.state.categoriesIncome.filter(d => d.name === this.state.category)
-    let categoryid = category[0].id
+      this.state.categoriesExpense.find(d => d.name === this.state.category) :
+      this.state.categoriesIncome.find(d => d.name === this.state.category);
+
+    if (category === undefined) {
+      category = (this.state.type === "Expense") ?
+        this.state.categoriesExpense[0] : this.state.categoriesIncome[0];
+    }
+    let categoryid = category.id;
     let paymentmethodid = this.state.paymentMethod === "Cash" ? 0 : 1;
     let type = this.state.type === "Expense" ? 0 : 1;
     let { date, amount, currency, comment } = this.state;
     let newRecord = { date, type, categoryid, paymentmethodid, amount, currency, comment }
+    
     AxiosFuncs.addRecord(newRecord).then(result => {
       this.props.closeAddForm();
       this.props.getRecords();
@@ -63,11 +69,11 @@ class AddForm extends Component {
     if (e.target.name === "type") {
       let category = "";
       category = (e.target.value === "Income") ? this.state.categoriesIncome[0].name :
-                                                 this.state.categoriesExpense[0].name
-      this.setState({ [e.target.name]: e.target.value, category}); 
-      return;                                  
+        this.state.categoriesExpense[0].name
+      this.setState({ [e.target.name]: e.target.value, category });
+      return;
     }
-    this.setState({ [e.target.name]: e.target.value, isRed: ""});
+    this.setState({ [e.target.name]: e.target.value, isRed: "" });
   }
 
   render() {

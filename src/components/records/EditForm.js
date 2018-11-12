@@ -25,12 +25,12 @@ class EditForm extends Component {
   componentDidMount() {
     this.getCategories();
     let id = this.props.recordIdToEdit;
-    let record = this.props.records.filter(r => r.id === id)[0];
-    let {date, type, category, paymentMethodId, amount, currency, comment} = record;
+    let record = this.props.records.find(r => r.id === id);
+    let { date, type, category, paymentMethodId, amount, currency, comment } = record;
     type = type === 0 ? "Expense" : "Income";
     category = category.name;
     let paymentMethod = paymentMethodId === 0 ? "Cash" : "Card";
-    this.setState({date, type, category, paymentMethod, amount, currency, comment} );
+    this.setState({ date, type, category, paymentMethod, amount, currency, comment });
   }
 
   getCategories() {
@@ -38,21 +38,27 @@ class EditForm extends Component {
       .then(result => {
         let categoriesExpense = result.data.filter(d => d.type === 0)
         let categoriesIncome = result.data.filter(d => d.type === 1)
-        this.setState({ categoriesExpense, categoriesIncome})
+        this.setState({ categoriesExpense, categoriesIncome })
       })
       .catch(err => console.log(err))
   }
 
   editRecord = () => {
     let category = (this.state.type === "Expense") ?
-      this.state.categoriesExpense.filter(d => d.name === this.state.category) :
-      this.state.categoriesIncome.filter(d => d.name === this.state.category)
-    let categoryid = category[0].id
+      this.state.categoriesExpense.find(d => d.name === this.state.category) :
+      this.state.categoriesIncome.find(d => d.name === this.state.category);
+
+    if (category === undefined) {
+      category = (this.state.type === "Expense") ?
+        this.state.categoriesExpense[0] : this.state.categoriesIncome[0];
+    }
+    let categoryid = category.id;
     let paymentmethodid = this.state.paymentMethod === "Cash" ? 0 : 1;
     let type = this.state.type === "Expense" ? 0 : 1;
     let { date, amount, currency, comment } = this.state;
     let id = this.props.recordIdToEdit;
     let newRecord = { id, date, type, categoryid, paymentmethodid, amount, currency, comment }
+
     AxiosFuncs.editRecord(newRecord).then(result => {
       this.props.closeEditForm();
       this.props.getRecords();
@@ -61,28 +67,18 @@ class EditForm extends Component {
   }
 
   inputChange = (e) => {
-    this.setState({ [e.target.name]: e.target.value});
-  }
-
-  inputChangeType = (e) => {
-    let category = "";
-    /*category = (e.target.value === "Income") ? this.state.categoriesIncome[0].name :
-                                                 this.state.categoriesExpense[0].name
-    console.log(category)*/
-    this.setState({ [e.target.name]: e.target.value, category } ); 
+    this.setState({ [e.target.name]: e.target.value });
   }
 
   render() {
-    console.log(this.state)
-
     return (
       <div className="form">
         <div className="close-button"><FontAwesomeIcon onClick={this.props.closeEditForm} icon="window-close" /></div>
         <div>EDIT</div>
         <div className="form-input">
           <div className="one-column1" onChange={this.inputChange} name="type">
-            <div> Expense <input type="radio" checked={this.state.type === "Expense"} onChange={this.inputChangeType} value="Expense" name="type" /> </div><span> </span>
-            <div> Income <input type="radio" checked={this.state.type === "Income"} onChange={this.inputChangeType} value="Income" name="type" /> </div>
+            <div> Expense <input type="radio" checked={this.state.type === "Expense"} onChange={this.inputChange} value="Expense" name="type" /> </div><span> </span>
+            <div> Income <input type="radio" checked={this.state.type === "Income"} onChange={this.inputChange} value="Income" name="type" /> </div>
           </div>
 
           <div className="one-column1" onChange={this.inputChange} name="paymentMethod">
